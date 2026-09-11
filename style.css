@@ -171,10 +171,9 @@ body {
 
 .dropzone-label {
   margin: 0;
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.72rem;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.88rem;
   font-weight: 500;
-  letter-spacing: 0.05em;
 }
 
 /* ---- workspace (row 2, two equal columns, fills remaining screen) ---- */
@@ -259,9 +258,8 @@ body {
   align-items: center;
   gap: 10px;
   color: var(--muted);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
+  font-family: 'Inter', system-ui, sans-serif;
+  font-size: 0.85rem;
 }
 
 .preview img:not([hidden]) ~ .placeholder,
