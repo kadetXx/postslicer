@@ -145,6 +145,7 @@ body {
 .dropzone {
   position: relative;
   flex-shrink: 0;
+  border-radius: 8px;
   margin: 16px;
   display: flex;
   align-items: center;
@@ -213,6 +214,7 @@ body {
   justify-content: center;
   width: 20px;
   height: 20px;
+  border-radius: 4px;
   background: var(--ink);
   color: var(--paper);
   font-size: 0.65rem;
@@ -234,6 +236,7 @@ body {
 .preview {
   position: relative;
   width: 100%;
+  border-radius: 8px;
   min-height: 220px;
   overflow: hidden;
   background: var(--zone);
@@ -296,6 +299,8 @@ body {
   display: grid;
   grid-auto-flow: column;
   border: 1px solid var(--ink);
+  border-radius: 8px;
+  overflow: hidden;
   flex-shrink: 0;
   align-self: center;
 }
@@ -325,6 +330,7 @@ body {
 
 .btn-download {
   border: 1px solid var(--ink);
+  border-radius: 8px;
   background: var(--ink);
   color: var(--paper);
   font-family: 'IBM Plex Mono', monospace;
@@ -377,7 +383,7 @@ body {
 .tweet-avatar {
   width: 36px;
   height: 36px;
-  border-radius: 0;
+  border-radius: 8px;
   flex-shrink: 0;
   background: var(--tw-ink);
 }
@@ -394,7 +400,7 @@ body {
   border: 1px solid var(--tw-border);
   background: transparent;
   color: var(--tw-muted);
-  border-radius: 0;
+  border-radius: 8px;
   display: grid;
   place-items: center;
   cursor: pointer;
