@@ -151,7 +151,7 @@ body {
   justify-content: center;
   gap: 12px;
   padding: 32px;
-  border: 1px dashed var(--line-strong);
+  border: 1px solid var(--line);
   background: var(--zone);
   color: var(--muted);
   cursor: pointer;
@@ -237,7 +237,7 @@ body {
   min-height: 220px;
   overflow: hidden;
   background: var(--zone);
-  border: 1px solid var(--line);
+  border: 1px dashed var(--line-strong);
   flex-shrink: 0;
   display: flex;
   align-items: center;
@@ -345,7 +345,7 @@ body {
 
 .tweet-card {
   --tw-bg: #ffffff;
-  --tw-border: #eff3f4;
+  --tw-border: rgba(15, 20, 25, 0.06);
   --tw-ink: #0f1419;
   --tw-muted: #536471;
 
@@ -367,7 +367,7 @@ body {
 
 .tweet-card[data-theme="dark"] {
   --tw-bg: #000000;
-  --tw-border: #2f3336;
+  --tw-border: rgba(255, 255, 255, 0.1);
   --tw-ink: #e7e9ea;
   --tw-muted: #71767b;
 }
