@@ -441,10 +441,11 @@ body {
 .placeholder-box {
   flex: 0 0 58%;
   scroll-snap-align: start;
-  border-radius: 0;
+  border-radius: 8px;
 }
 
 .slide-card {
+  border: 1px solid var(--line);
   background-repeat: no-repeat;
   background-color: #000;
 }
@@ -454,7 +455,7 @@ body {
    1.5-visible clip as the real carousel above, so the goal AND the
    slide-to-reveal mechanic are both visible before you even upload */
 .placeholder-box {
-  border: 1px solid var(--line-strong);
+  border: 1px solid var(--line);
   background: var(--paper);
 }
 
