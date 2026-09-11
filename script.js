@@ -9,6 +9,8 @@
   const tweetCard = document.getElementById('tweetCard');
   const tweetTrack = document.getElementById('tweetTrack');
   const placeholderTrack = document.getElementById('placeholderTrack');
+  const tweetNext = document.getElementById('tweetNext');
+  const tweetDots = document.getElementById('tweetDots');
   const tweetThemeToggle = document.getElementById('tweetThemeToggle');
   const statusBox = document.querySelector('.status');
   const statusText = document.getElementById('statusText');
@@ -16,6 +18,7 @@
   let sliceCount = 2;
   let objectUrl = null;
   let naturalImg = null; // full-resolution Image for canvas work
+  let currentSlide = 0;
 
   // a representative "landscape photo" used only to size the empty-state
   // placeholder boxes before a real photo is uploaded, so the crop shape
@@ -65,9 +68,15 @@
     }
   }
 
+  function activeTrack() {
+    return naturalImg ? tweetTrack : placeholderTrack;
+  }
+
   function renderTweetPreview() {
     tweetTrack.innerHTML = '';
     placeholderTrack.innerHTML = '';
+    tweetDots.innerHTML = '';
+    currentSlide = 0;
 
     if (!naturalImg) {
       tweetTrack.hidden = true;
@@ -79,8 +88,13 @@
         box.className = 'placeholder-box';
         box.style.aspectRatio = aspect;
         placeholderTrack.appendChild(box);
+
+        const dot = document.createElement('span');
+        if (i === 0) dot.classList.add('is-active');
+        tweetDots.appendChild(dot);
       }
       placeholderTrack.scrollLeft = 0;
+      tweetNext.hidden = false;
       return;
     }
 
@@ -100,10 +114,42 @@
       card.style.backgroundSize = `${sliceCount * 100}% auto`;
       card.style.backgroundPosition = `${(i / (sliceCount - 1)) * 100}% center`;
       tweetTrack.appendChild(card);
+
+      const dot = document.createElement('span');
+      if (i === 0) dot.classList.add('is-active');
+      tweetDots.appendChild(dot);
     }
 
     tweetTrack.scrollLeft = 0;
+    tweetNext.hidden = false;
   }
+
+  function updateDots() {
+    Array.from(tweetDots.children).forEach((dot, i) => dot.classList.toggle('is-active', i === currentSlide));
+  }
+
+  function goToSlide(i) {
+    currentSlide = ((i % sliceCount) + sliceCount) % sliceCount;
+    const card = activeTrack().children[currentSlide];
+    if (card) card.scrollIntoView({ behavior: 'smooth', inline: 'start', block: 'nearest' });
+    updateDots();
+  }
+
+  let scrollSyncTimer = null;
+  function handleTrackScroll() {
+    const track = activeTrack();
+    if (!track.children.length) return;
+    clearTimeout(scrollSyncTimer);
+    scrollSyncTimer = setTimeout(() => {
+      const cardWidth = track.children[0].getBoundingClientRect().width;
+      const step = cardWidth + 6; // matches track gap
+      const nearest = Math.round(track.scrollLeft / step);
+      currentSlide = Math.max(0, Math.min(sliceCount - 1, nearest));
+      updateDots();
+    }, 80);
+  }
+  tweetTrack.addEventListener('scroll', handleTrackScroll);
+  placeholderTrack.addEventListener('scroll', handleTrackScroll);
 
   function updateStatus() {
     statusText.textContent = naturalImg ? `${sliceCount}-SLICE` : 'IDLE';
@@ -215,6 +261,7 @@
 
   downloadBtn.addEventListener('click', sliceAndDownload);
   resetBtn.addEventListener('click', reset);
+  tweetNext.addEventListener('click', () => goToSlide(currentSlide + 1));
 
   tweetThemeToggle.addEventListener('click', () => {
     const next = tweetCard.dataset.theme === 'dark' ? 'light' : 'dark';
