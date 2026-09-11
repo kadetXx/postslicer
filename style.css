@@ -353,7 +353,7 @@ body {
   max-width: 440px;
   background: var(--tw-bg);
   border: 1px solid var(--tw-border);
-  border-radius: 0;
+  border-radius: 8px;
   padding: 16px 18px 12px;
   display: flex;
   flex-direction: column;
