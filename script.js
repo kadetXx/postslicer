@@ -9,6 +9,8 @@
   const tweetTrack = document.getElementById('tweetTrack');
   const placeholderTrack = document.getElementById('placeholderTrack');
   const themeToggle = document.getElementById('themeToggle');
+  const tweetCard = document.getElementById('tweetCard');
+  const modeSwatches = Array.from(document.querySelectorAll('.tweet-mode-swatch'));
   const statusBox = document.querySelector('.status');
   const statusText = document.getElementById('statusText');
 
@@ -231,6 +233,18 @@
     applyTheme(next);
     try { localStorage.setItem('slicey-theme', next); } catch (_) { /* private mode etc. */ }
   });
+
+  modeSwatches.forEach(btn =>
+    btn.addEventListener('click', () => {
+      const mode = btn.dataset.mode;
+      tweetCard.dataset.mode = mode;
+      modeSwatches.forEach(s => {
+        const active = s === btn;
+        s.classList.toggle('is-active', active);
+        s.setAttribute('aria-checked', String(active));
+      });
+    })
+  );
 
   renderTweetPreview();
 })();

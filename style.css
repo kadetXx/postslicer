@@ -6,13 +6,6 @@
   --line-strong: rgba(0, 0, 0, 0.22);
   --zone: #f3f3f3;
   --shadow: rgba(0, 0, 0, 0.10);
-
-  /* the mock tweet card's own colors -- authentic X chrome, follows
-     the site-wide theme toggle below rather than having its own */
-  --tw-bg: #ffffff;
-  --tw-border: rgba(15, 20, 25, 0.06);
-  --tw-ink: #0f1419;
-  --tw-muted: #536471;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,11 +17,6 @@
     --line-strong: rgba(255, 255, 255, 0.28);
     --zone: #1c1c1c;
     --shadow: rgba(0, 0, 0, 0.6);
-
-    --tw-bg: #000000;
-    --tw-border: rgba(255, 255, 255, 0.1);
-    --tw-ink: #e7e9ea;
-    --tw-muted: #71767b;
   }
 }
 
@@ -40,7 +28,26 @@
   --line-strong: rgba(255, 255, 255, 0.28);
   --zone: #1c1c1c;
   --shadow: rgba(0, 0, 0, 0.6);
+}
 
+/* the mock tweet card's own colors -- picked independently of the site
+   theme via the three swatches, matching X's own three real modes:
+   Default (white), Dim (dark slate blue), Lights out (pure black) */
+.tweet-card {
+  --tw-bg: #ffffff;
+  --tw-border: rgba(15, 20, 25, 0.06);
+  --tw-ink: #0f1419;
+  --tw-muted: #536471;
+}
+
+.tweet-card[data-mode="dim"] {
+  --tw-bg: #15202b;
+  --tw-border: rgba(255, 255, 255, 0.1);
+  --tw-ink: #f7f9f9;
+  --tw-muted: #8899a6;
+}
+
+.tweet-card[data-mode="dark"] {
   --tw-bg: #000000;
   --tw-border: rgba(255, 255, 255, 0.1);
   --tw-ink: #e7e9ea;
@@ -427,6 +434,31 @@ body {
 .tweet-who { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
 .tweet-name { font-size: 0.88rem; font-weight: 700; color: var(--tw-ink); }
 .tweet-handle { font-size: 0.84rem; color: var(--tw-muted); }
+
+.tweet-mode-swatches {
+  margin-left: auto;
+  display: flex;
+  gap: 7px;
+  flex-shrink: 0;
+}
+
+.tweet-mode-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  padding: 0;
+  cursor: pointer;
+  border: 1px solid var(--tw-border);
+  box-shadow: 0 0 0 1px transparent;
+}
+
+.tweet-mode-swatch[data-mode="light"] { background: #ffffff; }
+.tweet-mode-swatch[data-mode="dim"] { background: #15202b; }
+.tweet-mode-swatch[data-mode="dark"] { background: #000000; }
+
+.tweet-mode-swatch.is-active {
+  box-shadow: 0 0 0 2px var(--tw-bg), 0 0 0 3px var(--tw-ink);
+}
 
 
 .tweet-text { margin: 0; font-size: 0.92rem; line-height: 1.4; color: var(--tw-ink); }

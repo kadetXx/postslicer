@@ -78,12 +78,17 @@
           <div class="panel-label"><span class="idx">02</span>TIMELINE PREVIEW</div>
 
           <div class="panel-body">
-            <article class="tweet-card" id="tweetCard">
+            <article class="tweet-card" id="tweetCard" data-mode="dark">
               <div class="tweet-head">
                 <div class="tweet-avatar" aria-hidden="true"></div>
                 <div class="tweet-who">
                   <span class="tweet-name">Your name</span>
                   <span class="tweet-handle">@yourhandle</span>
+                </div>
+                <div class="tweet-mode-swatches" role="radiogroup" aria-label="X display mode">
+                  <button type="button" class="tweet-mode-swatch" data-mode="light" role="radio" aria-checked="false" aria-label="Default (light)"></button>
+                  <button type="button" class="tweet-mode-swatch" data-mode="dim" role="radio" aria-checked="false" aria-label="Dim"></button>
+                  <button type="button" class="tweet-mode-swatch is-active" data-mode="dark" role="radio" aria-checked="true" aria-label="Lights out"></button>
                 </div>
               </div>
 
