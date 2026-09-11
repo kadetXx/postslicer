@@ -445,7 +445,7 @@ body {
 }
 
 .slide-card {
-  max-height: 420px;
+  max-height: 340px;
   background-repeat: no-repeat;
   background-color: #000;
 }
@@ -455,6 +455,7 @@ body {
    1.5-visible clip as the real carousel above, so the goal AND the
    slide-to-reveal mechanic are both visible before you even upload */
 .placeholder-box {
+  max-height: 340px;
   border: 1px solid var(--line-strong);
   background: var(--paper);
 }
