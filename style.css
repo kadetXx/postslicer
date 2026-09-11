@@ -413,13 +413,13 @@ body {
   background: var(--zone);
 }
 
-/* the carousel strip -- each slide is its own card with a gap between
-   them, clipped so only ~1.5 cards show at once. That's the whole trick:
-   each slice posts as its own full-size portrait image, so a phone's
-   viewport can't fit more than one and a half of them at a time, which
-   is exactly why people scroll (and why this tool exists). Same layout
-   applies to the empty-state placeholder so the demo is honest before
-   you even upload a photo. */
+/* the carousel strip -- measured directly off a real posted 3-slice tweet
+   on X desktop: no chevron, no dot pagination, just a plain scrollable
+   row with a thin gap between cards. The visible portion works out to
+   one full card plus ~73% of the next (not X's mobile-app proportions),
+   which is what makes scrolling to reveal the rest necessary -- that's
+   the whole trick. Same layout applies to the empty-state placeholder
+   so the demo is honest before you even upload a photo. */
 .tweet-media-track,
 .placeholder-track {
   width: 100%;
@@ -439,7 +439,7 @@ body {
 
 .slide-card,
 .placeholder-box {
-  flex: 0 0 70%;
+  flex: 0 0 58%;
   scroll-snap-align: start;
   border-radius: 0;
 }
@@ -449,34 +449,6 @@ body {
   background-repeat: no-repeat;
   background-color: #000;
 }
-
-.tweet-media-next {
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
-  border-radius: 0;
-  border: none;
-  background: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-
-.tweet-media-dots {
-  position: absolute;
-  left: 50%;
-  bottom: 10px;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 5px;
-}
-
-.tweet-media-dots span { width: 6px; height: 6px; border-radius: 50%; background: rgba(255, 255, 255, 0.4); }
-.tweet-media-dots span.is-active { background: #1d9bf0; }
 
 /* the empty state -- before a photo lands, show the exact crop shape the
    slices will come out as (full width / N, full height) at the same
