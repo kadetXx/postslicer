@@ -13,7 +13,7 @@
   const statusBox = document.querySelector('.status');
   const statusText = document.getElementById('statusText');
 
-  let sliceCount = 2;
+  let sliceCount = 3;
   let objectUrl = null;
   let naturalImg = null; // full-resolution Image for canvas work
 
