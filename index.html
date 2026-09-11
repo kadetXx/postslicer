@@ -29,8 +29,17 @@
 
       <div class="status">
         <span class="status-dot" id="statusDot"></span>
-        <span class="status-text" id="statusText">IDLE</span>
+        <span class="status-text" id="statusText" hidden></span>
         <button type="button" class="btn-reset" id="resetBtn" hidden>RESET</button>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode">
+          <svg class="icon-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+          <svg class="icon-moon" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </button>
       </div>
     </header>
 
@@ -69,22 +78,13 @@
           <div class="panel-label"><span class="idx">02</span>TIMELINE PREVIEW</div>
 
           <div class="panel-body">
-            <article class="tweet-card" id="tweetCard" data-theme="dark">
+            <article class="tweet-card" id="tweetCard">
               <div class="tweet-head">
                 <div class="tweet-avatar" aria-hidden="true"></div>
                 <div class="tweet-who">
                   <span class="tweet-name">Your name</span>
                   <span class="tweet-handle">@yourhandle</span>
                 </div>
-                <button type="button" class="tweet-theme-toggle" id="tweetThemeToggle" aria-label="Preview in light mode">
-                  <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
-                    <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                  </svg>
-                  <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                    <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-                  </svg>
-                </button>
               </div>
 
               <p class="tweet-text">this is what it'll look like once it posts ↓</p>

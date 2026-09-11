@@ -6,10 +6,9 @@
   const segButtons = Array.from(document.querySelectorAll('.seg-btn'));
   const downloadBtn = document.getElementById('downloadBtn');
   const resetBtn = document.getElementById('resetBtn');
-  const tweetCard = document.getElementById('tweetCard');
   const tweetTrack = document.getElementById('tweetTrack');
   const placeholderTrack = document.getElementById('placeholderTrack');
-  const tweetThemeToggle = document.getElementById('tweetThemeToggle');
+  const themeToggle = document.getElementById('themeToggle');
   const statusBox = document.querySelector('.status');
   const statusText = document.getElementById('statusText');
 
@@ -106,7 +105,8 @@
   }
 
   function updateStatus() {
-    statusText.textContent = naturalImg ? `${sliceCount}-SLICE` : 'IDLE';
+    statusText.hidden = !naturalImg;
+    statusText.textContent = naturalImg ? `${sliceCount}-SLICE` : '';
   }
 
   function setSliceCount(n) {
@@ -216,10 +216,20 @@
   downloadBtn.addEventListener('click', sliceAndDownload);
   resetBtn.addEventListener('click', reset);
 
-  tweetThemeToggle.addEventListener('click', () => {
-    const next = tweetCard.dataset.theme === 'dark' ? 'light' : 'dark';
-    tweetCard.dataset.theme = next;
-    tweetThemeToggle.setAttribute('aria-label', next === 'dark' ? 'Preview in light mode' : 'Preview in dark mode');
+  function applyTheme(theme) {
+    document.documentElement.dataset.theme = theme;
+    themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
+  }
+
+  let storedTheme = null;
+  try { storedTheme = localStorage.getItem('slicey-theme'); } catch (_) { /* private mode etc. */ }
+  const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  applyTheme(storedTheme || (systemPrefersDark ? 'dark' : 'light'));
+
+  themeToggle.addEventListener('click', () => {
+    const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+    applyTheme(next);
+    try { localStorage.setItem('slicey-theme', next); } catch (_) { /* private mode etc. */ }
   });
 
   renderTweetPreview();

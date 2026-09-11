@@ -6,10 +6,17 @@
   --line-strong: rgba(0, 0, 0, 0.22);
   --zone: #f3f3f3;
   --shadow: rgba(0, 0, 0, 0.10);
+
+  /* the mock tweet card's own colors -- authentic X chrome, follows
+     the site-wide theme toggle below rather than having its own */
+  --tw-bg: #ffffff;
+  --tw-border: rgba(15, 20, 25, 0.06);
+  --tw-ink: #0f1419;
+  --tw-muted: #536471;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --paper: #000000;
     --ink: #ffffff;
     --muted: #a3a3a3;
@@ -17,7 +24,27 @@
     --line-strong: rgba(255, 255, 255, 0.28);
     --zone: #121212;
     --shadow: rgba(0, 0, 0, 0.6);
+
+    --tw-bg: #000000;
+    --tw-border: rgba(255, 255, 255, 0.1);
+    --tw-ink: #e7e9ea;
+    --tw-muted: #71767b;
   }
+}
+
+:root[data-theme="dark"] {
+  --paper: #000000;
+  --ink: #ffffff;
+  --muted: #a3a3a3;
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.28);
+  --zone: #121212;
+  --shadow: rgba(0, 0, 0, 0.6);
+
+  --tw-bg: #000000;
+  --tw-border: rgba(255, 255, 255, 0.1);
+  --tw-ink: #e7e9ea;
+  --tw-muted: #71767b;
 }
 
 * { box-sizing: border-box; }
@@ -130,6 +157,30 @@ body {
 }
 
 .status .btn-reset:hover { color: var(--ink); }
+
+.theme-toggle {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border: 1px solid var(--line-strong);
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.theme-toggle:hover { color: var(--ink); border-color: var(--ink); }
+
+.theme-toggle .icon-moon { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
+:root[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: none; }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: block; }
+}
 
 /* ---- main area fills remaining screen ---- */
 
@@ -347,11 +398,6 @@ body {
 /* ---- tweet card preview (X's own chrome, but squared off to match our grid) ---- */
 
 .tweet-card {
-  --tw-bg: #ffffff;
-  --tw-border: rgba(15, 20, 25, 0.06);
-  --tw-ink: #0f1419;
-  --tw-muted: #536471;
-
   width: 100%;
   max-width: 440px;
   background: var(--tw-bg);
@@ -368,13 +414,6 @@ body {
   align-self: center;
 }
 
-.tweet-card[data-theme="dark"] {
-  --tw-bg: #000000;
-  --tw-border: rgba(255, 255, 255, 0.1);
-  --tw-ink: #e7e9ea;
-  --tw-muted: #71767b;
-}
-
 .tweet-head { display: flex; align-items: center; gap: 10px; }
 
 .tweet-avatar {
@@ -389,23 +428,6 @@ body {
 .tweet-name { font-size: 0.88rem; font-weight: 700; color: var(--tw-ink); }
 .tweet-handle { font-size: 0.84rem; color: var(--tw-muted); }
 
-.tweet-theme-toggle {
-  margin-left: auto;
-  width: 28px;
-  height: 28px;
-  flex-shrink: 0;
-  border: 1px solid var(--tw-border);
-  background: transparent;
-  color: var(--tw-muted);
-  border-radius: 999px;
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-
-.tweet-theme-toggle .icon-moon { display: none; }
-.tweet-card[data-theme="dark"] .tweet-theme-toggle .icon-sun { display: none; }
-.tweet-card[data-theme="dark"] .tweet-theme-toggle .icon-moon { display: block; }
 
 .tweet-text { margin: 0; font-size: 0.92rem; line-height: 1.4; color: var(--tw-ink); }
 
