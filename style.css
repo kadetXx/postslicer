@@ -410,7 +410,7 @@ body {
   position: relative;
   width: 100%;
   overflow: hidden;
-  background: var(--zone);
+  background: var(--tw-bg);
 }
 
 /* the carousel strip -- measured directly off a real posted 3-slice tweet
@@ -445,7 +445,7 @@ body {
 }
 
 .slide-card {
-  border: 1px solid var(--line);
+  border: 1px solid var(--tw-border);
   background-repeat: no-repeat;
   background-color: #000;
 }
@@ -453,10 +453,13 @@ body {
 /* the empty state -- before a photo lands, show the exact crop shape the
    slices will come out as (full width / N, full height) at the same
    1.5-visible clip as the real carousel above, so the goal AND the
-   slide-to-reveal mechanic are both visible before you even upload */
+   slide-to-reveal mechanic are both visible before you even upload.
+   Matches the tweet card's own light/dark toggle (--tw-*), not the
+   site's theme, so the gap between cards blends into the card's own
+   surface instead of showing a mismatched site-colored strip. */
 .placeholder-box {
-  border: 1px solid var(--line);
-  background: var(--paper);
+  border: 1px solid var(--tw-border);
+  background: var(--tw-bg);
 }
 
 .tweet-actions {
