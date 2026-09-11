@@ -17,12 +17,12 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #333333;
+    --paper: #111111;
     --ink: #ffffff;
     --muted: #a3a3a3;
     --line: rgba(255, 255, 255, 0.1);
     --line-strong: rgba(255, 255, 255, 0.28);
-    --zone: #3f3f3f;
+    --zone: #1c1c1c;
     --shadow: rgba(0, 0, 0, 0.6);
 
     --tw-bg: #000000;
@@ -33,12 +33,12 @@
 }
 
 :root[data-theme="dark"] {
-  --paper: #333333;
+  --paper: #111111;
   --ink: #ffffff;
   --muted: #a3a3a3;
   --line: rgba(255, 255, 255, 0.1);
   --line-strong: rgba(255, 255, 255, 0.28);
-  --zone: #3f3f3f;
+  --zone: #1c1c1c;
   --shadow: rgba(0, 0, 0, 0.6);
 
   --tw-bg: #000000;
