@@ -11,6 +11,31 @@
   let objectUrl = null;
   let naturalImg = null; // full-resolution Image for canvas work
 
+  // A tap inside a horizontally-scrollable, scroll-snapping carousel can get
+  // its click event silently suppressed by the browser once it decides the
+  // touch is a swipe rather than a tap. Track the touch ourselves so a clean
+  // tap (little movement) still toggles, regardless of that ambiguity.
+  function attachTap(el, handler) {
+    let startX = 0, startY = 0, moved = false;
+    el.addEventListener('touchstart', e => {
+      const t = e.touches[0];
+      startX = t.clientX;
+      startY = t.clientY;
+      moved = false;
+    }, { passive: true });
+    el.addEventListener('touchmove', e => {
+      const t = e.touches[0];
+      if (Math.abs(t.clientX - startX) > 10 || Math.abs(t.clientY - startY) > 10) moved = true;
+    }, { passive: true });
+    el.addEventListener('touchend', e => {
+      if (!moved) {
+        e.preventDefault(); // stop the trailing synthetic click from double-firing
+        handler();
+      }
+    });
+    el.addEventListener('click', handler);
+  }
+
   function setImage(img, url) {
     if (objectUrl) URL.revokeObjectURL(objectUrl); // no-op if not a blob: URL
     naturalImg = img;
@@ -62,7 +87,7 @@
       });
       slide.appendChild(slideDownload);
 
-      slide.addEventListener('click', () => {
+      attachTap(slide, () => {
         const wasRevealed = slide.classList.contains('is-revealed');
         carousel.querySelectorAll('.slide.is-revealed').forEach(s => s.classList.remove('is-revealed'));
         if (!wasRevealed) slide.classList.add('is-revealed');
