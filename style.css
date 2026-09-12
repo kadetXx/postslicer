@@ -384,7 +384,7 @@ html, body {
      available below the logo. 92px = brand's margin-top (20) +
      stamp-mark height (50, the tallest thing in .brand) + margin-
      bottom (22). Keep in sync if those values change. */
-  .stage { min-height: calc(100vh - 92px); padding-top: 15px; }
+  .stage { min-height: calc(100vh - 92px); padding-top: 0; }
 
   /* no room beside the card on narrow screens -- always sit below it,
      even if the max-height breakpoint above also matches (e.g. a short
