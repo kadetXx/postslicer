@@ -175,6 +175,7 @@ html, body {
 /* ---- receipt ---- */
 
 .receipt {
+  position: relative;
   width: 504px;
   max-width: 92vw;
   background: var(--white);
@@ -291,9 +292,26 @@ html, body {
 /* ---- stamp buttons ---- */
 
 .stamp-row {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  transform: translateX(-50%);
+  margin-top: 13px;
   display: flex;
   gap: 14px;
-  margin-top: 13px;
+}
+
+@media (max-height: 820px) {
+  .stamp-row {
+    left: auto;
+    top: auto;
+    right: 100%;
+    bottom: 0;
+    transform: none;
+    margin-top: 0;
+    margin-right: 14px;
+    flex-direction: column;
+  }
 }
 
 .stamp-btn {
@@ -325,4 +343,18 @@ html, body {
   .side-menu { display: none; }
   .brand { position: static; justify-content: center; margin-bottom: 22px; }
   .stage { padding-top: 22px; }
+
+  /* no room beside the card on narrow screens -- always sit below it,
+     even if the max-height breakpoint above also matches (e.g. a short
+     phone viewport) */
+  .stamp-row {
+    left: 50%;
+    top: 100%;
+    right: auto;
+    bottom: auto;
+    transform: translateX(-50%);
+    margin-top: 13px;
+    margin-right: 0;
+    flex-direction: row;
+  }
 }
