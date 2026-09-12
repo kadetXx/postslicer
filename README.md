@@ -2,6 +2,11 @@
 
 A photo slicer for the X (Twitter) multi-image carousel trick. Split any image into equal vertical 2:1 or 3:1 slices, ready to post.
 
+
+
+https://github.com/user-attachments/assets/18f4c203-6916-443e-a622-d02f16e3ed3a
+
+
 Live: [https://postslicer.com](https://postslicer.com)
 
 ## How it works
