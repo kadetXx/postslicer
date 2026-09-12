@@ -30,10 +30,14 @@
     el.addEventListener('touchend', e => {
       if (!moved) {
         e.preventDefault(); // stop the trailing synthetic click from double-firing
+        e.stopPropagation(); // don't let a tap on a nested control also trigger its parent's tap
         handler();
       }
     });
-    el.addEventListener('click', handler);
+    el.addEventListener('click', e => {
+      e.stopPropagation();
+      handler();
+    });
   }
 
   function setImage(img, url) {
@@ -81,10 +85,7 @@
       slideDownload.className = 'slide-download';
       slideDownload.setAttribute('aria-label', `Download slice ${i + 1}`);
       slideDownload.innerHTML = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v12M12 16l5-5M12 16l-5-5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>';
-      slideDownload.addEventListener('click', e => {
-        e.stopPropagation();
-        downloadSlice(i);
-      });
+      attachTap(slideDownload, () => downloadSlice(i));
       slide.appendChild(slideDownload);
 
       attachTap(slide, () => {
