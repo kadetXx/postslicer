@@ -23,6 +23,13 @@ html, body {
   font-family: var(--font-body);
 }
 
+html {
+  /* the whole layout is sized to feel right at 100% zoom on a normal
+     laptop screen -- shrinking here (uniformly, like real browser zoom)
+     instead of relying on people zooming out themselves */
+  zoom: 0.9;
+}
+
 .frame {
   position: relative;
   min-height: 100vh;
@@ -31,7 +38,7 @@ html, body {
 /* ---- brand, top right ---- */
 
 .brand {
-  position: absolute;
+  position: fixed;
   top: 40px;
   right: 48px;
   display: flex;
@@ -66,7 +73,7 @@ html, body {
 /* ---- side menu, left, vertically centered ---- */
 
 .side-menu {
-  position: absolute;
+  position: fixed;
   left: 56px;
   top: 50%;
   transform: translateY(-50%);
@@ -242,6 +249,8 @@ html, body {
   display: flex;
   gap: 6px;
   overflow-x: auto;
+  overflow-y: auto;
+  max-height: 55vh;
   border-radius: 8px;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
