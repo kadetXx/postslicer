@@ -5,50 +5,42 @@
   const downloadBtn = document.getElementById('downloadBtn');
   const carousel = document.getElementById('carousel');
   const sliceTabs = Array.from(document.querySelectorAll('.slice-tab'));
+  const labelCount = document.getElementById('labelCount');
 
   let sliceCount = 3;
   let objectUrl = null;
   let naturalImg = null; // full-resolution Image for canvas work
 
-  // representative "landscape photo" used only to shape the empty-state
-  // placeholder tiles before a real photo is picked (2 slices -> squares,
-  // 3 slices -> tall portrait strips), so the crop goal is visible up front.
-  const REF_LANDSCAPE_W = 1200;
-  const REF_LANDSCAPE_H = 600;
+  function setImage(img, url) {
+    if (objectUrl) URL.revokeObjectURL(objectUrl); // no-op if not a blob: URL
+    naturalImg = img;
+    objectUrl = url;
+    renderCarousel();
+  }
 
   function openFile(file) {
     if (!file || !file.type.startsWith('image/')) return;
 
-    if (objectUrl) URL.revokeObjectURL(objectUrl);
-    objectUrl = URL.createObjectURL(file);
-
+    const url = URL.createObjectURL(file);
     const img = new Image();
-    img.onload = () => {
-      naturalImg = img;
-      downloadBtn.hidden = false;
-      renderCarousel();
-    };
-    img.src = objectUrl;
+    img.onload = () => setImage(img, url);
+    img.src = url;
   }
 
   function renderCarousel() {
     carousel.innerHTML = '';
+    if (!naturalImg) return;
 
-    const aspect = naturalImg
-      ? `${naturalImg.naturalWidth / sliceCount} / ${naturalImg.naturalHeight}`
-      : `${REF_LANDSCAPE_W / sliceCount} / ${REF_LANDSCAPE_H}`;
+    const aspect = `${naturalImg.naturalWidth / sliceCount} / ${naturalImg.naturalHeight}`;
 
     for (let i = 0; i < sliceCount; i++) {
       const slide = document.createElement('div');
       slide.className = 'slide';
       slide.style.position = 'relative';
       slide.style.aspectRatio = aspect;
-
-      if (naturalImg) {
-        slide.style.backgroundImage = `url(${objectUrl})`;
-        slide.style.backgroundSize = `${sliceCount * 100}% auto`;
-        slide.style.backgroundPosition = `${(i / (sliceCount - 1)) * 100}% center`;
-      }
+      slide.style.backgroundImage = `url(${objectUrl})`;
+      slide.style.backgroundSize = `${sliceCount * 100}% auto`;
+      slide.style.backgroundPosition = `${(i / (sliceCount - 1)) * 100}% center`;
 
       if (i === 0) {
         const label = document.createElement('span');
@@ -67,6 +59,7 @@
 
   function setSliceCount(n) {
     sliceCount = n;
+    labelCount.textContent = `×${n}`;
     sliceTabs.forEach(tab => {
       const active = Number(tab.dataset.count) === n;
       tab.classList.toggle('is-active', active);
@@ -136,5 +129,9 @@
 
   downloadBtn.addEventListener('click', sliceAndDownload);
 
-  renderCarousel();
+  // ships with a default image so the download stamp works immediately --
+  // swap default-ad.jpg for your own file (same name) to replace it.
+  const defaultImg = new Image();
+  defaultImg.onload = () => setImage(defaultImg, 'default-ad.jpg');
+  defaultImg.src = 'default-ad.jpg';
 })();

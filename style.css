@@ -112,12 +112,13 @@ html, body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 20px;
-  padding: 48px 20px;
+  gap: 16px;
+  padding: 32px 20px;
+  overflow-y: auto;
 }
 
 .panel-label-row {
-  width: 614px;
+  width: 560px;
   max-width: 92vw;
   display: flex;
   align-items: center;
@@ -125,12 +126,27 @@ html, body {
 }
 
 .panel-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
   font-family: var(--font-body);
   font-weight: 700;
   font-size: 13px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink);
+}
+
+.panel-label .idx {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  background: var(--ink);
+  color: var(--kraft);
+  font-size: 11px;
+  border-radius: 4px;
 }
 
 .slice-toggle {
@@ -161,7 +177,7 @@ html, body {
 /* ---- receipt ---- */
 
 .receipt {
-  width: 614px;
+  width: 560px;
   max-width: 92vw;
   background: var(--white);
   border-radius: var(--radius-sm);
@@ -241,6 +257,10 @@ html, body {
   scroll-snap-align: start;
   background-repeat: no-repeat;
   background-color: var(--kraft-dark);
+  /* safety net for unusually tall (portrait) uploads -- the default
+     3:1 ad image and most photos never hit this, but the page must
+     always fit 100vh regardless of what gets dropped in */
+  max-height: 34vh;
 }
 
 .slide-placeholder-label {
@@ -280,8 +300,8 @@ html, body {
 }
 
 .stamp-btn {
-  width: 84px;
-  height: 84px;
+  width: 76px;
+  height: 76px;
   border-radius: 999px;
   background: var(--red);
   border: 3px solid var(--white);
@@ -293,7 +313,6 @@ html, body {
 }
 
 .stamp-btn:disabled { opacity: 0.5; cursor: progress; }
-.stamp-btn[hidden] { display: none; }
 
 .photo-stamp { transform: rotate(-8deg); }
 .download-stamp { transform: rotate(8deg); }
