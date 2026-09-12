@@ -5,9 +5,7 @@
   --white: #FFFFFF;
   --grease: #7A7268;
   --red: #C8102E;
-  --red-dark: #9E0C24;
   --radius-sm: 6px;
-  --radius-md: 14px;
   --font-display: 'Anton', sans-serif;
   --font-body: 'Work Sans', system-ui, sans-serif;
   --font-stamp: 'Special Elite', monospace;
@@ -305,12 +303,10 @@ html, body {
 
 /* ---- stamp buttons ---- */
 
-/* since .stamp-row is absolutely positioned (removed from .stage's flex
-   flow), .stage's centering no longer accounts for its height below the
-   card -- this invisible spacer restores that space so top/bottom
-   padding stay balanced. Height = stamp-row's margin-top (22px) +
-   stamp-btn height (50px) = 72px, minus the 14px .stage already adds
-   as the gap before this spacer. Keep in sync if those values change. */
+/* .stamp-row is absolutely positioned, so .stage's centering ignores
+   its height -- this invisible spacer stands in for that footprint
+   (stamp-row's margin-top + stamp-btn height, minus the gap .stage
+   already adds before it) so top/bottom padding stay balanced. */
 .stamp-spacer {
   height: 58px;
   visibility: hidden;
@@ -377,18 +373,14 @@ html, body {
   .frame { min-height: auto; }
   .brand { position: static; justify-content: center; margin-top: 28px; margin-bottom: 14px; }
 
-  /* on mobile the logo is static (in-flow) instead of fixed, so it
-     already consumes real height above .stage. Reserve exactly what's
-     left of the viewport for .stage instead of a flat 100vh, so its
-     justify-content:center still centers within the space actually
-     available below the logo. 92px = brand's margin-top (20) +
-     stamp-mark height (50, the tallest thing in .brand) + margin-
-     bottom (22). Keep in sync if those values change. */
+  /* the logo is static here instead of fixed, so it consumes real
+     height above .stage -- reserve what's left of the viewport (92px =
+     .brand's margin-top + margin-bottom + its tallest child, the
+     stamp-mark) so justify-content:center still centers correctly. */
   .stage { min-height: calc(100vh - 92px); padding-top: 0; }
 
   /* no room beside the card on narrow screens -- always sit below it,
-     even if the max-height breakpoint above also matches (e.g. a short
-     phone viewport) */
+     even if the max-height breakpoint below also matches */
   .stamp-row {
     left: 50%;
     top: 100%;
