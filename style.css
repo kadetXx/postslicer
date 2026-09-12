@@ -374,7 +374,7 @@ html, body {
 
 @media (max-width: 720px) {
   .side-menu { display: none; }
-  .brand { position: static; justify-content: center; margin-bottom: 22px; }
+  .brand { position: static; justify-content: center; margin-top: 14px; margin-bottom: 22px; }
   .stage { padding-top: 22px; }
 
   /* no room beside the card on narrow screens -- always sit below it,
