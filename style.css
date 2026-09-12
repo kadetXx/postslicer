@@ -295,6 +295,7 @@ html, body {
 .stamp-row {
   display: flex;
   gap: 16px;
+  margin-top: 14px;
 }
 
 .stamp-btn {
