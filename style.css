@@ -375,7 +375,7 @@ html, body {
 @media (max-width: 720px) {
   .side-menu { display: none; }
   .frame { min-height: auto; }
-  .brand { position: static; justify-content: center; margin-top: 20px; margin-bottom: 22px; }
+  .brand { position: static; justify-content: center; margin-top: 12px; margin-bottom: 30px; }
 
   /* on mobile the logo is static (in-flow) instead of fixed, so it
      already consumes real height above .stage. Reserve exactly what's
