@@ -47,14 +47,64 @@
         label.className = 'slide-placeholder-label';
         label.textContent = `1/${sliceCount}`;
         label.style.left = '0';
-        label.style.bottom = '0';
+        label.style.top = '0';
         slide.appendChild(label);
       }
+
+      const slideDownload = document.createElement('button');
+      slideDownload.type = 'button';
+      slideDownload.className = 'slide-download';
+      slideDownload.setAttribute('aria-label', `Download slice ${i + 1}`);
+      slideDownload.innerHTML = '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v12M12 16l5-5M12 16l-5-5" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="white" stroke-width="2.5" stroke-linecap="round"/></svg>';
+      slideDownload.addEventListener('click', e => {
+        e.stopPropagation();
+        downloadSlice(i);
+      });
+      slide.appendChild(slideDownload);
 
       carousel.appendChild(slide);
     }
 
     carousel.scrollLeft = 0;
+  }
+
+  function sliceBounds() {
+    const w = naturalImg.naturalWidth;
+    const bounds = [0];
+    for (let i = 1; i < sliceCount; i++) bounds.push(Math.round((w / sliceCount) * i));
+    bounds.push(w);
+    return bounds;
+  }
+
+  function renderSliceToBlob(left, right) {
+    const h = naturalImg.naturalHeight;
+    const canvas = document.createElement('canvas');
+    canvas.width = right - left;
+    canvas.height = h;
+    const ctx = canvas.getContext('2d');
+    ctx.drawImage(naturalImg, left, 0, right - left, h, 0, 0, right - left, h);
+    return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+  }
+
+  async function downloadSlice(i) {
+    if (!naturalImg) return;
+
+    const bounds = sliceBounds();
+    const blob = await renderSliceToBlob(bounds[i], bounds[i + 1]);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `slicey-slice-${i + 1}.png`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+
+    window.goatcounter?.count({
+      path: 'slice-download-single',
+      title: `Downloaded slice ${i + 1}/${sliceCount}`,
+      event: true,
+    });
   }
 
   function setSliceCount(n) {
@@ -74,26 +124,11 @@
     downloadBtn.disabled = true;
 
     try {
-      const w = naturalImg.naturalWidth;
-      const h = naturalImg.naturalHeight;
-      const bounds = [0];
-      for (let i = 1; i < sliceCount; i++) bounds.push(Math.round((w / sliceCount) * i));
-      bounds.push(w);
-
+      const bounds = sliceBounds();
       const zip = new JSZip();
 
       for (let i = 0; i < sliceCount; i++) {
-        const left = bounds[i];
-        const right = bounds[i + 1];
-        const sliceWidth = right - left;
-
-        const canvas = document.createElement('canvas');
-        canvas.width = sliceWidth;
-        canvas.height = h;
-        const ctx = canvas.getContext('2d');
-        ctx.drawImage(naturalImg, left, 0, sliceWidth, h, 0, 0, sliceWidth, h);
-
-        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        const blob = await renderSliceToBlob(bounds[i], bounds[i + 1]);
         zip.file(`slice-${i + 1}.png`, blob);
       }
 

@@ -281,6 +281,32 @@ html, body {
   padding: 7px;
 }
 
+.slide-download {
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 999px;
+  background: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.15s ease, transform 0.15s ease;
+}
+
+.slide-download svg { width: 12px; height: 12px; }
+
+.slide:hover .slide-download,
+.slide-download:focus-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .line-items {
   display: flex;
   flex-direction: column;
