@@ -397,25 +397,7 @@ html, body {
 /* ---- responsive ---- */
 
 @media (max-width: 720px) {
-  .frame { min-height: auto; }
-  .brand { position: static; justify-content: flex-start; margin: 28px 0 42px 20px; }
-
-  .stamp-mark {
-    width: 35px;
-    height: 35px;
-    font-size: 7px;
-    border-width: 2px;
-  }
-
-  .wordmark {
-    font-size: 20px;
-  }
-
-  /* the logo is static here instead of fixed, so it consumes real
-     height above .stage -- reserve what's left of the viewport (120px =
-     .brand's margin-top + margin-bottom + its tallest child, the
-     stamp-mark) so justify-content:center still centers correctly. */
-  .stage { min-height: calc(100vh - 120px); padding-top: 0; }
+  .brand { display: none; }
 
   /* side menu becomes a footer: static in flow (moved to the end of
      .frame in HTML), centered, links stacked vertically as before */
