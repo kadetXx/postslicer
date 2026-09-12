@@ -294,15 +294,15 @@ html, body {
 /* since .stamp-row is absolutely positioned (removed from .stage's flex
    flow), .stage's centering no longer accounts for its height below the
    card -- this invisible spacer restores that space so top/bottom
-   padding stay balanced. Height = stamp-row's margin-top (13px) +
-   stamp-btn height (50px) = 63px, minus the 14px .stage already adds
+   padding stay balanced. Height = stamp-row's margin-top (22px) +
+   stamp-btn height (50px) = 72px, minus the 14px .stage already adds
    as the gap before this spacer. Keep in sync if those values change. */
 .stamp-spacer {
-  height: 49px;
+  height: 58px;
   visibility: hidden;
 }
 
-@media (max-height: 820px) {
+@media (max-height: 900px) {
   /* buttons float beside the card in this mode, no longer adding
      height below it, so no spacer is needed */
   .stamp-spacer {
@@ -315,12 +315,12 @@ html, body {
   left: 50%;
   top: 100%;
   transform: translateX(-50%);
-  margin-top: 13px;
+  margin-top: 22px;
   display: flex;
   gap: 14px;
 }
 
-@media (max-height: 820px) {
+@media (max-height: 900px) {
   .stamp-row {
     left: auto;
     top: auto;
@@ -372,7 +372,7 @@ html, body {
     right: auto;
     bottom: auto;
     transform: translateX(-50%);
-    margin-top: 13px;
+    margin-top: 22px;
     margin-right: 0;
     flex-direction: row;
   }
