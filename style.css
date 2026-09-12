@@ -23,13 +23,6 @@ html, body {
   font-family: var(--font-body);
 }
 
-html {
-  /* the whole layout is sized to feel right at 100% zoom on a normal
-     laptop screen -- shrinking here (uniformly, like real browser zoom)
-     instead of relying on people zooming out themselves */
-  zoom: 0.9;
-}
-
 .frame {
   position: relative;
   min-height: 100vh;
@@ -39,16 +32,16 @@ html {
 
 .brand {
   position: fixed;
-  top: 40px;
-  right: 48px;
+  top: 36px;
+  right: 43px;
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
 }
 
 .stamp-mark {
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   border-radius: 999px;
   border: 3px solid var(--red);
   color: var(--red);
@@ -57,7 +50,7 @@ html {
   justify-content: center;
   text-align: center;
   font-family: var(--font-stamp);
-  font-size: 11px;
+  font-size: 10px;
   line-height: 1.15;
   transform: rotate(-8deg);
   flex-shrink: 0;
@@ -65,7 +58,7 @@ html {
 
 .wordmark {
   font-family: var(--font-display);
-  font-size: 34px;
+  font-size: 31px;
   letter-spacing: 0.01em;
   line-height: 1;
 }
@@ -74,24 +67,24 @@ html {
 
 .side-menu {
   position: fixed;
-  left: 56px;
+  left: 50px;
   top: 50%;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 18px;
 }
 
 .menu-links {
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 20px;
 }
 
 .menu-link {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   text-decoration: none;
   color: var(--grease);
 }
@@ -101,7 +94,7 @@ html {
 .menu-link span {
   font-family: var(--font-body);
   font-weight: 600;
-  font-size: 12px;
+  font-size: 11px;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
@@ -119,13 +112,13 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 16px;
-  padding: 32px 20px;
+  gap: 14px;
+  padding: 29px 18px;
   overflow-y: auto;
 }
 
 .panel-label-row {
-  width: 560px;
+  width: 504px;
   max-width: 92vw;
   display: flex;
   align-items: center;
@@ -136,10 +129,10 @@ html {
 .panel-label {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
   font-family: var(--font-body);
   font-weight: 700;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--ink);
@@ -148,7 +141,7 @@ html {
 .panel-label .idx {
   font-family: var(--font-stamp);
   font-weight: 400;
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.04em;
   text-transform: none;
   color: var(--red);
@@ -160,14 +153,14 @@ html {
 }
 
 .slice-tab {
-  width: 30px;
-  height: 34px;
+  width: 27px;
+  height: 31px;
   border: none;
   border-radius: 4px;
   background: var(--white);
   color: var(--ink);
   font-family: var(--font-stamp);
-  font-size: 14px;
+  font-size: 13px;
   cursor: pointer;
   transform: rotate(-2deg);
 }
@@ -182,14 +175,14 @@ html {
 /* ---- receipt ---- */
 
 .receipt {
-  width: 560px;
+  width: 504px;
   max-width: 92vw;
   background: var(--white);
   border-radius: var(--radius-sm);
-  padding: 22px 22px 30px;
+  padding: 20px 20px 27px;
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  gap: 13px;
   box-shadow: 0 10px 24px rgba(33, 28, 25, 0.14);
   transform: rotate(-0.8deg);
 }
@@ -199,31 +192,31 @@ html {
   flex-direction: column;
   align-items: center;
   gap: 2px;
-  padding-bottom: 10px;
+  padding-bottom: 9px;
   border-bottom: 2px dashed var(--kraft-dark);
 }
 
 .receipt-title {
   font-family: var(--font-stamp);
-  font-size: 15px;
+  font-size: 14px;
   letter-spacing: 0.06em;
 }
 
 .receipt-sub {
   font-family: var(--font-body);
-  font-size: 11px;
+  font-size: 10px;
   color: var(--grease);
 }
 
 .tweet-identity {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
 }
 
 .tweet-avatar {
-  width: 34px;
-  height: 34px;
+  width: 31px;
+  height: 31px;
   border-radius: 999px;
   background: var(--kraft);
   border: 1.5px solid var(--ink);
@@ -236,25 +229,25 @@ html {
   gap: 1px;
 }
 
-.tweet-name { font-weight: 700; font-size: 13px; }
-.tweet-handle { font-size: 12px; color: var(--grease); }
+.tweet-name { font-weight: 700; font-size: 12px; }
+.tweet-handle { font-size: 11px; color: var(--grease); }
 
 .tweet-text {
   margin: 0;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.4;
 }
 
 .carousel {
   display: flex;
-  gap: 6px;
+  gap: 5px;
   overflow-x: auto;
   overflow-y: auto;
   max-height: 55vh;
   border-radius: 8px;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
-  min-height: 60px;
+  min-height: 54px;
 }
 
 .carousel::-webkit-scrollbar { display: none; }
@@ -269,18 +262,18 @@ html {
 .slide-placeholder-label {
   position: absolute;
   font-family: var(--font-stamp);
-  font-size: 10px;
+  font-size: 9px;
   color: rgba(33, 28, 25, 0.55);
-  padding: 8px;
+  padding: 7px;
 }
 
 .line-items {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 5px;
   padding-top: 4px;
   border-top: 2px dashed var(--kraft-dark);
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .line-item {
@@ -291,7 +284,7 @@ html {
 .line-item.total {
   font-weight: 700;
   color: var(--red);
-  padding-top: 6px;
+  padding-top: 5px;
   border-top: 1px solid var(--kraft-dark);
 }
 
@@ -299,17 +292,17 @@ html {
 
 .stamp-row {
   display: flex;
-  gap: 16px;
-  margin-top: 14px;
+  gap: 14px;
+  margin-top: 13px;
 }
 
 .stamp-btn {
-  width: 56px;
-  height: 56px;
+  width: 50px;
+  height: 50px;
   border-radius: 999px;
   background: var(--red);
   border: 2px solid var(--white);
-  box-shadow: 0 8px 20px rgba(200, 16, 46, 0.45);
+  box-shadow: 0 7px 18px rgba(200, 16, 46, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -317,8 +310,8 @@ html {
 }
 
 .stamp-btn svg {
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
 }
 
 .stamp-btn:disabled { opacity: 0.5; cursor: progress; }
@@ -330,6 +323,6 @@ html {
 
 @media (max-width: 720px) {
   .side-menu { display: none; }
-  .brand { position: static; justify-content: center; margin-bottom: 24px; }
-  .stage { padding-top: 24px; }
+  .brand { position: static; justify-content: center; margin-bottom: 22px; }
+  .stage { padding-top: 22px; }
 }
