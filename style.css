@@ -123,6 +123,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  transform: rotate(-0.8deg);
 }
 
 .panel-label {
@@ -138,15 +139,12 @@ html, body {
 }
 
 .panel-label .idx {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  background: var(--ink);
-  color: var(--kraft);
-  font-size: 11px;
-  border-radius: 4px;
+  font-family: var(--font-stamp);
+  font-weight: 400;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  text-transform: none;
+  color: var(--red);
 }
 
 .slice-toggle {
@@ -296,20 +294,25 @@ html, body {
 
 .stamp-row {
   display: flex;
-  gap: 20px;
+  gap: 16px;
 }
 
 .stamp-btn {
-  width: 76px;
-  height: 76px;
+  width: 56px;
+  height: 56px;
   border-radius: 999px;
   background: var(--red);
-  border: 3px solid var(--white);
-  box-shadow: 0 12px 28px rgba(200, 16, 46, 0.45);
+  border: 2px solid var(--white);
+  box-shadow: 0 8px 20px rgba(200, 16, 46, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
+}
+
+.stamp-btn svg {
+  width: 20px;
+  height: 20px;
 }
 
 .stamp-btn:disabled { opacity: 0.5; cursor: progress; }
