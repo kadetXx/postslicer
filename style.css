@@ -1,544 +1,307 @@
 :root {
-  --paper: #ffffff;
-  --ink: #000000;
-  --muted: #5c5c5c;
-  --line: rgba(0, 0, 0, 0.08);
-  --line-strong: rgba(0, 0, 0, 0.22);
-  --zone: #f3f3f3;
-  --shadow: rgba(0, 0, 0, 0.10);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
-    --paper: #111111;
-    --ink: #ffffff;
-    --muted: #a3a3a3;
-    --line: rgba(255, 255, 255, 0.1);
-    --line-strong: rgba(255, 255, 255, 0.28);
-    --zone: #1c1c1c;
-    --shadow: rgba(0, 0, 0, 0.6);
-  }
-}
-
-:root[data-theme="dark"] {
-  --paper: #111111;
-  --ink: #ffffff;
-  --muted: #a3a3a3;
-  --line: rgba(255, 255, 255, 0.1);
-  --line-strong: rgba(255, 255, 255, 0.28);
-  --zone: #1c1c1c;
-  --shadow: rgba(0, 0, 0, 0.6);
-}
-
-/* the mock tweet card's own colors -- picked independently of the site
-   theme via the three swatches, matching X's own three real modes:
-   Default (white), Dim (dark slate blue), Lights out (pure black) */
-.tweet-card {
-  --tw-bg: #ffffff;
-  --tw-border: rgba(15, 20, 25, 0.06);
-  --tw-ink: #0f1419;
-  --tw-muted: #536471;
-}
-
-.tweet-card[data-mode="dim"] {
-  --tw-bg: #15202b;
-  --tw-border: rgba(255, 255, 255, 0.1);
-  --tw-ink: #f7f9f9;
-  --tw-muted: #8899a6;
-}
-
-.tweet-card[data-mode="dark"] {
-  --tw-bg: #000000;
-  --tw-border: rgba(255, 255, 255, 0.1);
-  --tw-ink: #e7e9ea;
-  --tw-muted: #71767b;
+  --kraft: #EFE3CC;
+  --kraft-dark: #E4D5B8;
+  --ink: #211C19;
+  --white: #FFFFFF;
+  --grease: #7A7268;
+  --red: #C8102E;
+  --red-dark: #9E0C24;
+  --radius-sm: 6px;
+  --radius-md: 14px;
+  --font-display: 'Anton', sans-serif;
+  --font-body: 'Work Sans', system-ui, sans-serif;
+  --font-stamp: 'Special Elite', monospace;
 }
 
 * { box-sizing: border-box; }
 
 html, body {
   margin: 0;
-  height: 100%;
-  background: var(--paper);
+  min-height: 100%;
+  background: var(--kraft);
   color: var(--ink);
+  font-family: var(--font-body);
 }
-
-body {
-  min-height: 100vh;
-  font-family: 'Inter', system-ui, sans-serif;
-  padding: 18px;
-  display: flex;
-}
-
-/* ---- outer frame ---- */
 
 .frame {
   position: relative;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid var(--line);
-  min-height: 0;
+  min-height: 100vh;
 }
 
-.frame-corner {
-  position: absolute;
-  width: 16px;
-  height: 16px;
-  border-color: var(--ink);
-  pointer-events: none;
-}
-.frame-corner.tl { top: -1px; left: -1px; border-top: 1px solid; border-left: 1px solid; }
-.frame-corner.tr { top: -1px; right: -1px; border-top: 1px solid; border-right: 1px solid; }
-.frame-corner.bl { bottom: -1px; left: -1px; border-bottom: 1px solid; border-left: 1px solid; }
-.frame-corner.br { bottom: -1px; right: -1px; border-bottom: 1px solid; border-right: 1px solid; }
-
-/* ---- top bar: logo boxed top-left, status boxed top-right ---- */
-
-.frame-top {
-  display: flex;
-  align-items: stretch;
-  border-bottom: 1px solid var(--line);
-  flex-wrap: wrap;
-}
+/* ---- brand, top right ---- */
 
 .brand {
+  position: absolute;
+  top: 40px;
+  right: 48px;
   display: flex;
   align-items: center;
-  gap: 14px;
-  padding: 16px 22px;
-  border-right: 1px solid var(--line);
+  gap: 16px;
 }
 
-.mark {
-  width: 34px;
-  height: 34px;
-  border: 1px solid var(--ink);
-  color: var(--ink);
-  display: grid;
-  place-items: center;
+.stamp-mark {
+  width: 56px;
+  height: 56px;
+  border-radius: 999px;
+  border: 3px solid var(--red);
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: var(--font-stamp);
+  font-size: 11px;
+  line-height: 1.15;
+  transform: rotate(-8deg);
   flex-shrink: 0;
 }
 
-.brand-name {
-  font-family: 'Space Grotesk', system-ui, sans-serif;
-  font-weight: 700;
-  font-size: 1.05rem;
-  letter-spacing: 0.1em;
+.wordmark {
+  font-family: var(--font-display);
+  font-size: 34px;
+  letter-spacing: 0.01em;
   line-height: 1;
 }
 
-.status {
-  margin-left: auto;
+/* ---- side menu, left, vertically centered ---- */
+
+.side-menu {
+  position: absolute;
+  left: 56px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.menu-links {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.menu-link {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 16px 22px;
-  border-left: 1px solid var(--line);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  color: var(--muted);
+  text-decoration: none;
+  color: var(--grease);
 }
 
-.status-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--muted);
-}
+.menu-link svg { flex-shrink: 0; }
 
-.status.is-loaded .status-dot { background: var(--ink); }
-
-.status .btn-reset {
-  border: none;
-  background: transparent;
-  color: var(--muted);
-  font-family: inherit;
-  font-size: inherit;
-  letter-spacing: inherit;
-  cursor: pointer;
-  text-decoration: underline;
-  text-underline-offset: 3px;
-  padding: 0;
-}
-
-.status .btn-reset:hover { color: var(--ink); }
-
-.theme-toggle {
-  width: 22px;
-  height: 22px;
-  flex-shrink: 0;
-  border: 1px solid var(--line-strong);
-  border-radius: 999px;
-  background: transparent;
-  color: var(--muted);
-  display: grid;
-  place-items: center;
-  cursor: pointer;
-}
-
-.theme-toggle:hover { color: var(--ink); border-color: var(--ink); }
-
-.theme-toggle .icon-moon { display: none; }
-:root[data-theme="dark"] .theme-toggle .icon-sun { display: none; }
-:root[data-theme="dark"] .theme-toggle .icon-moon { display: block; }
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle .icon-sun { display: none; }
-  :root:not([data-theme="light"]) .theme-toggle .icon-moon { display: block; }
-}
-
-/* ---- main area fills remaining screen ---- */
-
-.frame-main {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-/* ---- dropzone (compact strip, row 1 -- the panels below need the room) ---- */
-
-.dropzone {
-  position: relative;
-  flex-shrink: 0;
-  border-radius: 2px;
-  margin: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 12px;
-  padding: 32px;
-  border: 1px solid var(--line);
-  background: var(--zone);
-  color: var(--muted);
-  cursor: pointer;
-  transition: border-color 0.15s ease, background 0.15s ease;
-}
-
-.dropzone:hover,
-.dropzone:focus-visible,
-.dropzone.is-dragover {
-  border-color: var(--line-strong);
-}
-
-.dropzone:focus-visible { outline: none; }
-
-.dropzone-icon { color: var(--ink); }
-
-.dropzone-label {
-  margin: 0;
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 0.88rem;
-  font-weight: 500;
-}
-
-/* ---- workspace (row 2, two equal columns, fills remaining screen) ---- */
-
-.workspace {
-  flex: 1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  min-height: 0;
-}
-
-.panel {
-  display: flex;
-  flex-direction: column;
-  min-height: 0;
-}
-
-.panel-source { border-right: 1px solid var(--line); }
-
-.panel-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--line);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.7rem;
-  font-weight: 500;
+.menu-link span {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 12px;
   letter-spacing: 0.1em;
-  color: var(--muted);
+  text-transform: uppercase;
+}
+
+.menu-divider {
+  align-self: stretch;
   flex-shrink: 0;
 }
 
-.panel-label .idx {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-  background: var(--ink);
-  color: var(--paper);
-  font-size: 0.65rem;
-}
+/* ---- main stage ---- */
 
-.panel-body {
-  flex: 1;
-  min-height: 0;
-  padding: 28px;
+.stage {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 20px;
-  overflow: auto;
+  padding: 48px 20px;
 }
 
-/* ---- source preview + cuts ---- */
-
-.preview {
-  position: relative;
-  width: 100%;
-  border-radius: 2px;
-  min-height: 220px;
-  overflow: hidden;
-  background: var(--zone);
-  border: 1px dashed var(--line-strong);
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.preview img:not([hidden]) {
-  display: block;
-  width: 100%;
-  height: auto;
-  line-height: 0;
-}
-
-.placeholder {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  color: var(--muted);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 0.85rem;
-}
-
-.preview img:not([hidden]) ~ .placeholder,
-.tweet-media-track:not(:empty) ~ .tweet-media-placeholder {
-  display: none;
-}
-
-.cuts { position: absolute; inset: 0; pointer-events: none; }
-
-.cuts .cut-line {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 0;
-  border-left: 1px dashed rgba(255, 255, 255, 0.9);
-  filter: drop-shadow(0 0 1px rgba(0, 0, 0, 0.6));
-}
-
-.cuts .cut-tab {
-  position: absolute;
-  top: 8px;
-  transform: translateX(-50%);
-  background: var(--ink);
-  color: var(--paper);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.65rem;
-  font-weight: 600;
-  padding: 2px 6px;
-}
-
-/* ---- segmented control ---- */
-
-.segmented {
-  display: grid;
-  grid-auto-flow: column;
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  overflow: hidden;
-  flex-shrink: 0;
-  align-self: center;
-}
-
-.seg-btn {
-  border: none;
-  border-right: 1px solid var(--ink);
-  background: transparent;
-  color: var(--ink);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.72rem;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  padding: 10px 16px;
-  cursor: pointer;
-  transition: background 0.12s ease, color 0.12s ease;
-}
-
-.seg-btn:last-child { border-right: none; }
-
-.seg-btn.is-active {
-  background: var(--ink);
-  color: var(--paper);
-}
-
-/* ---- download ---- */
-
-.btn-download {
-  border: 1px solid var(--ink);
-  border-radius: 999px;
-  background: var(--ink);
-  color: var(--paper);
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.06em;
-  padding: 13px 20px;
-  cursor: pointer;
-  transition: background 0.12s ease, color 0.12s ease;
-  flex-shrink: 0;
-  align-self: center;
-}
-
-.btn-download:hover { background: var(--paper); color: var(--ink); }
-.btn-download:disabled { opacity: 0.5; cursor: progress; }
-
-/* ---- tweet card preview (X's own chrome, but squared off to match our grid) ---- */
-
-.tweet-card {
-  width: 100%;
-  max-width: 440px;
-  background: var(--tw-bg);
-  border: 1px solid var(--tw-border);
-  border-radius: 8px;
-  padding: 16px 18px 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  color: var(--tw-ink);
-  font-family: 'Inter', system-ui, sans-serif;
-  box-shadow: 0 16px 32px var(--shadow);
-  flex-shrink: 0;
-  align-self: center;
-}
-
-.tweet-head { display: flex; align-items: center; gap: 10px; }
-
-.tweet-avatar {
-  width: 36px;
-  height: 36px;
-  border-radius: 8px;
-  flex-shrink: 0;
-  background: var(--tw-ink);
-}
-
-.tweet-who { display: flex; flex-direction: column; line-height: 1.25; min-width: 0; }
-.tweet-name { font-size: 0.88rem; font-weight: 700; color: var(--tw-ink); }
-.tweet-handle { font-size: 0.84rem; color: var(--tw-muted); }
-
-.tweet-mode-swatches {
-  margin-left: auto;
-  display: flex;
-  gap: 7px;
-  flex-shrink: 0;
-}
-
-.tweet-mode-swatch {
-  width: 18px;
-  height: 18px;
-  border-radius: 999px;
-  padding: 0;
-  cursor: pointer;
-  border: 1px solid var(--tw-border);
-  box-shadow: 0 0 0 1px transparent;
-}
-
-.tweet-mode-swatch[data-mode="light"] { background: #ffffff; }
-.tweet-mode-swatch[data-mode="dim"] { background: #15202b; }
-.tweet-mode-swatch[data-mode="dark"] { background: #000000; }
-
-.tweet-mode-swatch.is-active {
-  box-shadow: 0 0 0 2px var(--tw-bg), 0 0 0 3px var(--tw-ink);
-}
-
-
-.tweet-text { margin: 0; font-size: 0.92rem; line-height: 1.4; color: var(--tw-ink); }
-
-.tweet-media {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  background: var(--tw-bg);
-}
-
-/* the carousel strip -- measured directly off a real posted 3-slice tweet
-   on X desktop: no chevron, no dot pagination, just a plain scrollable
-   row with a thin gap between cards. The visible portion works out to
-   one full card plus ~73% of the next (not X's mobile-app proportions),
-   which is what makes scrolling to reveal the rest necessary -- that's
-   the whole trick. Same layout applies to the empty-state placeholder
-   so the demo is honest before you even upload a photo. */
-.tweet-media-track,
-.placeholder-track {
-  width: 100%;
-  display: flex;
-  gap: 6px;
-  overflow-x: auto;
-  scroll-snap-type: x mandatory;
-  scrollbar-width: none;
-  padding: 0;
-}
-
-.tweet-media-track::-webkit-scrollbar,
-.placeholder-track::-webkit-scrollbar { display: none; }
-
-.tweet-media-track[hidden],
-.placeholder-track[hidden] { display: none; }
-
-.slide-card,
-.placeholder-box {
-  flex: 0 0 58%;
-  scroll-snap-align: start;
-  border-radius: 8px;
-}
-
-.slide-card {
-  border: 1px solid var(--tw-border);
-  background-repeat: no-repeat;
-  background-color: #000;
-}
-
-/* the empty state -- before a photo lands, show the exact crop shape the
-   slices will come out as (full width / N, full height) at the same
-   1.5-visible clip as the real carousel above, so the goal AND the
-   slide-to-reveal mechanic are both visible before you even upload.
-   Matches the tweet card's own light/dark toggle (--tw-*), not the
-   site's theme, so the gap between cards blends into the card's own
-   surface instead of showing a mismatched site-colored strip. */
-.placeholder-box {
-  border: 1px solid var(--tw-border);
-  background: var(--tw-bg);
-}
-
-.tweet-actions {
+.panel-label-row {
+  width: 614px;
+  max-width: 92vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  max-width: 320px;
-  color: var(--tw-muted);
 }
 
-.tweet-action { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-family: 'Inter', system-ui, sans-serif; }
-.tweet-action svg { display: block; }
+.panel-label {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.slice-toggle {
+  display: flex;
+  gap: 6px;
+}
+
+.slice-tab {
+  width: 30px;
+  height: 34px;
+  border: none;
+  border-radius: 4px;
+  background: var(--white);
+  color: var(--ink);
+  font-family: var(--font-stamp);
+  font-size: 14px;
+  cursor: pointer;
+  transform: rotate(-2deg);
+}
+
+.slice-tab:nth-child(2) { transform: rotate(2deg); }
+
+.slice-tab.is-active {
+  background: var(--red);
+  color: var(--white);
+}
+
+/* ---- receipt ---- */
+
+.receipt {
+  width: 614px;
+  max-width: 92vw;
+  background: var(--white);
+  border-radius: var(--radius-sm);
+  padding: 22px 22px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  box-shadow: 0 10px 24px rgba(33, 28, 25, 0.14);
+  transform: rotate(-0.8deg);
+}
+
+.receipt-head {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding-bottom: 10px;
+  border-bottom: 2px dashed var(--kraft-dark);
+}
+
+.receipt-title {
+  font-family: var(--font-stamp);
+  font-size: 15px;
+  letter-spacing: 0.06em;
+}
+
+.receipt-sub {
+  font-family: var(--font-body);
+  font-size: 11px;
+  color: var(--grease);
+}
+
+.tweet-identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.tweet-avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+  background: var(--kraft);
+  border: 1.5px solid var(--ink);
+  flex-shrink: 0;
+}
+
+.tweet-who {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+}
+
+.tweet-name { font-weight: 700; font-size: 13px; }
+.tweet-handle { font-size: 12px; color: var(--grease); }
+
+.tweet-text {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+.carousel {
+  display: flex;
+  gap: 6px;
+  overflow-x: auto;
+  border-radius: 8px;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  min-height: 60px;
+}
+
+.carousel::-webkit-scrollbar { display: none; }
+
+.slide {
+  flex: 0 0 58%;
+  scroll-snap-align: start;
+  background-repeat: no-repeat;
+  background-color: var(--kraft-dark);
+}
+
+.slide-placeholder-label {
+  position: absolute;
+  font-family: var(--font-stamp);
+  font-size: 10px;
+  color: rgba(33, 28, 25, 0.55);
+  padding: 8px;
+}
+
+.line-items {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 4px;
+  border-top: 2px dashed var(--kraft-dark);
+  font-size: 12px;
+}
+
+.line-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.line-item.total {
+  font-weight: 700;
+  color: var(--red);
+  padding-top: 6px;
+  border-top: 1px solid var(--kraft-dark);
+}
+
+/* ---- stamp buttons ---- */
+
+.stamp-row {
+  display: flex;
+  gap: 20px;
+}
+
+.stamp-btn {
+  width: 84px;
+  height: 84px;
+  border-radius: 999px;
+  background: var(--red);
+  border: 3px solid var(--white);
+  box-shadow: 0 12px 28px rgba(200, 16, 46, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.stamp-btn:disabled { opacity: 0.5; cursor: progress; }
+.stamp-btn[hidden] { display: none; }
+
+.photo-stamp { transform: rotate(-8deg); }
+.download-stamp { transform: rotate(8deg); }
 
 /* ---- responsive ---- */
 
 @media (max-width: 720px) {
-  .workspace { grid-template-columns: 1fr; }
-  .panel-source { border-right: none; border-bottom: 1px solid var(--line); }
-}
-
-@media (max-width: 480px) {
-  body { padding: 10px; }
-  .brand, .status { padding: 12px 16px; }
-  .panel-body { padding: 18px; }
+  .side-menu { display: none; }
+  .brand { position: static; justify-content: center; margin-bottom: 24px; }
+  .stage { padding-top: 24px; }
 }

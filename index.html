@@ -7,122 +7,80 @@
 <meta name="description" content="Cut a photo into equal strips for the Twitter/X slideshow carousel trick." />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Work+Sans:wght@400;500;600;700&family=Special+Elite&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="frame">
-    <span class="frame-corner tl"></span><span class="frame-corner tr"></span>
-    <span class="frame-corner bl"></span><span class="frame-corner br"></span>
-
-    <header class="frame-top">
-      <div class="brand">
-        <div class="mark" aria-hidden="true">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-            <circle cx="6" cy="6" r="3" stroke="currentColor" stroke-width="2"/>
-            <circle cx="6" cy="18" r="3" stroke="currentColor" stroke-width="2"/>
-            <path d="M8.5 8L20 19M20 5L8.5 16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </div>
-        <span class="brand-name">SLICEY</span>
-      </div>
-
-      <div class="status">
-        <span class="status-dot" id="statusDot"></span>
-        <span class="status-text" id="statusText" hidden></span>
-        <button type="button" class="btn-reset" id="resetBtn" hidden>RESET</button>
-        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Switch to dark mode">
-          <svg class="icon-sun" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/>
-            <path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-          <svg class="icon-moon" width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
-          </svg>
-        </button>
-      </div>
+    <header class="brand">
+      <div class="stamp-mark" aria-hidden="true">CUT<br />HERE</div>
+      <span class="wordmark">SLICEY</span>
     </header>
 
-    <div class="frame-main">
-      <section class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload a photo">
+    <nav class="side-menu" aria-label="Links">
+      <div class="menu-links">
+        <a class="menu-link" href="https://github.com/kadetXx" target="_blank" rel="noopener noreferrer">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="var(--ink)" aria-hidden="true"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+          <span>Github</span>
+        </a>
+        <a class="menu-link" href="https://twitter.com/kadetXx" target="_blank" rel="noopener noreferrer">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="var(--ink)" aria-hidden="true"><path d="M21.543 7.104c.015.211.015.423.015.636 0 6.507-4.954 14.01-14.01 14.01v-.003A13.94 13.94 0 0 1 0 19.539a9.88 9.88 0 0 0 7.287-2.041 4.93 4.93 0 0 1-4.6-3.42 4.916 4.916 0 0 0 2.223-.084A4.926 4.926 0 0 1 .96 9.167v-.062a4.887 4.887 0 0 0 2.235.616A4.928 4.928 0 0 1 1.67 3.148 13.98 13.98 0 0 0 11.82 8.292a4.929 4.929 0 0 1 8.39-4.49 9.868 9.868 0 0 0 3.128-1.196 4.941 4.941 0 0 1-2.165 2.724A9.828 9.828 0 0 0 24 4.555a10.019 10.019 0 0 1-2.457 2.549z"/></svg>
+          <span>Twitter</span>
+        </a>
+        <a class="menu-link" href="https://buymeacoffee.com/kadetxx" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 256 256" fill="var(--ink)" aria-hidden="true"><path d="M208,80H32a8,8,0,0,0-8,8v48a96.3,96.3,0,0,0,32.54,72H32a8,8,0,0,0,0,16H208a8,8,0,0,0,0-16H183.46a96.59,96.59,0,0,0,27-40.09A40,40,0,0,0,248,128v-8A40,40,0,0,0,208,80Zm24,48a24,24,0,0,1-17.2,23,95.78,95.78,0,0,0,1.2-15V97.38A24,24,0,0,1,232,120ZM112,56V24a8,8,0,0,1,16,0V56a8,8,0,0,1-16,0Zm32,0V24a8,8,0,0,1,16,0V56a8,8,0,0,1-16,0ZM80,56V24a8,8,0,0,1,16,0V56a8,8,0,0,1-16,0Z"/></svg>
+          <span>Coffee</span>
+        </a>
+      </div>
+      <svg class="menu-divider" width="12" height="96" viewBox="0 0 12 96" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M 6 0 L 6.4 11.9 L 6.8 24.9 L 2.5 39.9 L 8.7 50.0 L 3.9 62.0 L 5.8 80.0 L 5.8 96" fill="none" stroke="var(--red)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="0.1 6.5" opacity="0.7" />
+      </svg>
+    </nav>
+
+    <main class="stage">
+      <div class="panel-label-row">
+        <span class="panel-label">Your receipt</span>
+        <div class="slice-toggle" role="tablist" aria-label="Number of slices">
+          <button type="button" class="slice-tab" data-count="2" role="tab" aria-selected="false">2</button>
+          <button type="button" class="slice-tab is-active" data-count="3" role="tab" aria-selected="true">3</button>
+        </div>
+      </div>
+
+      <article class="receipt">
+        <div class="receipt-head">
+          <div class="receipt-title">*** SLICEY DELI ***</div>
+          <div class="receipt-sub">timeline preview receipt</div>
+        </div>
+
+        <div class="tweet-identity">
+          <div class="tweet-avatar" aria-hidden="true"></div>
+          <div class="tweet-who">
+            <span class="tweet-name">Your Name</span>
+            <span class="tweet-handle">@yourhandle</span>
+          </div>
+        </div>
+
+        <p class="tweet-text">this is what it'll look like once it posts ↓</p>
+
+        <div class="carousel" id="carousel"></div>
+
+        <div class="line-items">
+          <div class="line-item"><span>1x full-res slices</span><span>FREE</span></div>
+          <div class="line-item"><span>1x swipe-to-reveal effect</span><span>FREE</span></div>
+          <div class="line-item total"><span>TOTAL</span><span>$0.00</span></div>
+        </div>
+      </article>
+
+      <div class="stamp-row">
+        <button type="button" class="stamp-btn photo-stamp" id="photoBtn" aria-label="Choose a photo">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2" stroke="white" stroke-width="2"/><circle cx="8.5" cy="9.5" r="1.5" stroke="white" stroke-width="2"/><path d="M3 16l5-4 4 3 4-5 5 6" stroke="white" stroke-width="2" stroke-linejoin="round"/></svg>
+        </button>
         <input type="file" id="fileInput" accept="image/*" hidden />
-        <svg class="dropzone-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M12 16V4M12 4L7 9M12 4L17 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-        </svg>
-        <p class="dropzone-label">Drop a photo, or click to choose</p>
-      </section>
-
-      <section class="workspace" id="workspace">
-        <div class="panel panel-source">
-          <div class="panel-label"><span class="idx">01</span>SOURCE</div>
-
-          <div class="panel-body">
-            <div class="preview" id="previewWrap">
-              <img id="previewImg" alt="Uploaded photo preview" hidden />
-              <div class="cuts" id="cutsOverlay" aria-hidden="true"></div>
-              <div class="placeholder" id="previewPlaceholder">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="0" stroke="currentColor" stroke-width="1.5"/><circle cx="9" cy="10" r="1.5" stroke="currentColor" stroke-width="1.5"/><path d="M3 16l5-4 4 3 4-5 5 6" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
-                <span>No photo yet</span>
-              </div>
-            </div>
-
-            <div class="segmented" role="tablist" aria-label="Number of slices">
-              <button type="button" class="seg-btn is-active" data-count="3" role="tab" aria-selected="true">3 SLICES</button>
-              <button type="button" class="seg-btn" data-count="2" role="tab" aria-selected="false">2 SLICES</button>
-            </div>
-          </div>
-        </div>
-
-        <div class="panel panel-output">
-          <div class="panel-label"><span class="idx">02</span>TIMELINE PREVIEW</div>
-
-          <div class="panel-body">
-            <article class="tweet-card" id="tweetCard" data-mode="dark">
-              <div class="tweet-head">
-                <div class="tweet-avatar" aria-hidden="true"></div>
-                <div class="tweet-who">
-                  <span class="tweet-name">Your name</span>
-                  <span class="tweet-handle">@yourhandle</span>
-                </div>
-                <div class="tweet-mode-swatches" role="radiogroup" aria-label="X display mode">
-                  <button type="button" class="tweet-mode-swatch" data-mode="light" role="radio" aria-checked="false" aria-label="Default (light)"></button>
-                  <button type="button" class="tweet-mode-swatch" data-mode="dim" role="radio" aria-checked="false" aria-label="Dim"></button>
-                  <button type="button" class="tweet-mode-swatch is-active" data-mode="dark" role="radio" aria-checked="true" aria-label="Lights out"></button>
-                </div>
-              </div>
-
-              <p class="tweet-text">this is what it'll look like once it posts ↓</p>
-
-              <div class="tweet-media" id="tweetMedia">
-                <div class="tweet-media-track" id="tweetTrack" hidden></div>
-                <div class="placeholder-track" id="placeholderTrack"></div>
-              </div>
-
-              <div class="tweet-actions">
-                <span class="tweet-action">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M21 12a8 8 0 0 1-8 8H7l-4 3 1-4.5A8 8 0 1 1 21 12Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-                  14
-                </span>
-                <span class="tweet-action">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M17 2l4 4-4 4M7 22l-4-4 4-4M3 6h13a4 4 0 0 1 4 4v2M21 18H8a4 4 0 0 1-4-4v-2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                  6
-                </span>
-                <span class="tweet-action">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7.5-4.6-10-9.3C.4 8 2 4.5 5.4 4a5 5 0 0 1 6.6 2 5 5 0 0 1 6.6-2c3.4.5 5 4 3.4 7.7C19.5 16.4 12 21 12 21Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
-                  128
-                </span>
-                <span class="tweet-action">
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </article>
-
-            <button type="button" class="btn-download" id="downloadBtn" disabled>SLICE &amp; DOWNLOAD</button>
-          </div>
-        </div>
-      </section>
-    </div>
+        <button type="button" class="stamp-btn download-stamp" id="downloadBtn" hidden aria-label="Slice and download">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 4v12M12 16l5-5M12 16l-5-5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2" stroke="white" stroke-width="2" stroke-linecap="round"/></svg>
+        </button>
+      </div>
+    </main>
   </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
