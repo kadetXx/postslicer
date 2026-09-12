@@ -5,7 +5,7 @@
   const downloadBtn = document.getElementById('downloadBtn');
   const carousel = document.getElementById('carousel');
   const sliceTabs = Array.from(document.querySelectorAll('.slice-tab'));
-  const labelCount = document.getElementById('labelCount');
+  const idxBadge = document.getElementById('idxBadge');
 
   let sliceCount = 3;
   let objectUrl = null;
@@ -59,7 +59,7 @@
 
   function setSliceCount(n) {
     sliceCount = n;
-    labelCount.textContent = `×${n}`;
+    idxBadge.textContent = String(n).padStart(2, '0');
     sliceTabs.forEach(tab => {
       const active = Number(tab.dataset.count) === n;
       tab.classList.toggle('is-active', active);
