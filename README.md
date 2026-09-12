@@ -4,8 +4,11 @@ A photo slicer for the X (Twitter) multi-image carousel trick. Split any image i
 
 
 
+<div align="center">
+
 https://github.com/user-attachments/assets/18f4c203-6916-443e-a622-d02f16e3ed3a
 
+</div>
 
 Live: [https://postslicer.com](https://postslicer.com)
 
