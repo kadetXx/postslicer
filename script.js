@@ -106,6 +106,12 @@
       a.click();
       a.remove();
       URL.revokeObjectURL(zipUrl);
+
+      window.goatcounter?.count({
+        path: 'slice-download',
+        title: `Sliced into ${sliceCount}`,
+        event: true,
+      });
     } finally {
       downloadBtn.disabled = false;
     }
