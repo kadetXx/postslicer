@@ -372,13 +372,13 @@ html, body {
 @media (max-width: 720px) {
   .side-menu { display: none; }
   .frame { min-height: auto; }
-  .brand { position: static; justify-content: center; margin-top: 28px; margin-bottom: 14px; }
+  .brand { position: static; justify-content: center; margin-top: 28px; margin-bottom: 28px; }
 
   /* the logo is static here instead of fixed, so it consumes real
-     height above .stage -- reserve what's left of the viewport (92px =
+     height above .stage -- reserve what's left of the viewport (106px =
      .brand's margin-top + margin-bottom + its tallest child, the
      stamp-mark) so justify-content:center still centers correctly. */
-  .stage { min-height: calc(100vh - 92px); padding-top: 0; }
+  .stage { min-height: calc(100vh - 106px); padding-top: 0; }
 
   /* no room beside the card on narrow screens -- always sit below it,
      even if the max-height breakpoint below also matches */
