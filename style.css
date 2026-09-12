@@ -374,8 +374,8 @@ html, body {
 
 @media (max-width: 720px) {
   .side-menu { display: none; }
-  .brand { position: static; justify-content: center; margin-top: 14px; margin-bottom: 22px; }
-  .stage { padding-top: 22px; }
+  .brand { position: static; justify-content: center; margin-top: 20px; margin-bottom: 22px; }
+  .stage { min-height: auto; padding-top: 22px; }
 
   /* no room beside the card on narrow screens -- always sit below it,
      even if the max-height breakpoint above also matches (e.g. a short
