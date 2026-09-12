@@ -283,8 +283,8 @@ html, body {
 
 .slide-download {
   position: absolute;
-  left: 10px;
-  bottom: 10px;
+  left: 8px;
+  bottom: 8px;
   width: 24px;
   height: 24px;
   border: none;
@@ -305,6 +305,15 @@ html, body {
 .slide-download:focus-visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* touch devices have no real hover -- show the button outright instead of
+   gating it behind an unreliable tap-to-hover simulation */
+@media (hover: none) {
+  .slide-download {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .line-items {
