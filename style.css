@@ -271,6 +271,7 @@ html, body {
   border-radius: 8px;
   background-repeat: no-repeat;
   background-color: var(--kraft-dark);
+  cursor: pointer;
 }
 
 .slide-placeholder-label {
@@ -301,19 +302,10 @@ html, body {
 
 .slide-download svg { width: 12px; height: 12px; }
 
-.slide:hover .slide-download,
+.slide.is-revealed .slide-download,
 .slide-download:focus-visible {
   opacity: 1;
   transform: translateY(0);
-}
-
-/* touch devices have no real hover -- show the button outright instead of
-   gating it behind an unreliable tap-to-hover simulation */
-@media (hover: none) {
-  .slide-download {
-    opacity: 1;
-    transform: none;
-  }
 }
 
 .line-items {

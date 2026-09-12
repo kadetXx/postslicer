@@ -8,13 +8,12 @@ Live: [https://postslicer.com](https://postslicer.com)
 
 X arranges multiple images in one post as a grid. Slice a single photo into equal vertical strips, upload them to one post in order, and the grid reassembles them into what looks like one continuous image — the "carousel" trick.
 
-Slicey does the slicing: drop in a photo, pick 2 or 3 slices, and download a zip with each strip ready to upload in order.
+Slicey does the slicing: drop in a photo, pick 2 or 3 slices, and download each strip ready to upload in order.
 
 ## Tech
 
 - Base: Vanilla JS, HTML, CSS
 - HTML5  Canvas API: local slicing (nothing is uploaded to a server)
-- JSZip: for bundling the slices into a downloadable zip
 - GoatCounter: for privacy-friendly analytics
 
 ## Getting started
@@ -30,4 +29,3 @@ Open http://localhost:8000.
 ## License
 
 AGPL-3.0 — see [LICENSE](LICENSE).
-# postslicer

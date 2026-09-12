@@ -62,6 +62,12 @@
       });
       slide.appendChild(slideDownload);
 
+      slide.addEventListener('click', () => {
+        const wasRevealed = slide.classList.contains('is-revealed');
+        carousel.querySelectorAll('.slide.is-revealed').forEach(s => s.classList.remove('is-revealed'));
+        if (!wasRevealed) slide.classList.add('is-revealed');
+      });
+
       carousel.appendChild(slide);
     }
 
@@ -86,19 +92,25 @@
     return new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
   }
 
+  function triggerDownload(blob, filename) {
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
   async function downloadSlice(i) {
     if (!naturalImg) return;
 
     const bounds = sliceBounds();
     const blob = await renderSliceToBlob(bounds[i], bounds[i + 1]);
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `slicey-slice-${i + 1}.png`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    URL.revokeObjectURL(url);
+    triggerDownload(blob, `slicey-slice-${i + 1}.png`);
 
     window.goatcounter?.count({
       path: 'slice-download-single',
@@ -125,22 +137,12 @@
 
     try {
       const bounds = sliceBounds();
-      const zip = new JSZip();
 
       for (let i = 0; i < sliceCount; i++) {
         const blob = await renderSliceToBlob(bounds[i], bounds[i + 1]);
-        zip.file(`slice-${i + 1}.png`, blob);
+        triggerDownload(blob, `slicey-slice-${i + 1}.png`);
+        if (i < sliceCount - 1) await wait(150); // stagger so browsers don't block rapid-fire downloads
       }
-
-      const zipBlob = await zip.generateAsync({ type: 'blob' });
-      const zipUrl = URL.createObjectURL(zipBlob);
-      const a = document.createElement('a');
-      a.href = zipUrl;
-      a.download = `slicey-${sliceCount}-slices.zip`;
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(zipUrl);
 
       window.goatcounter?.count({
         path: 'slice-download',
