@@ -82,14 +82,28 @@ html, body {
 }
 
 .menu-link {
+  position: relative;
   display: flex;
   align-items: center;
-  gap: 9px;
+  padding-left: 26px;
   text-decoration: none;
   color: var(--grease);
 }
 
-.menu-link svg { flex-shrink: 0; }
+.menu-link svg {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  flex-shrink: 0;
+}
+
+.menu-link:hover svg,
+.menu-link:focus-visible svg {
+  opacity: 1;
+}
 
 .menu-link span {
   font-family: var(--font-body);
