@@ -1,8 +1,8 @@
-# Slicey
+# Postslicer (Slicey)
 
-A photo slicer for the X (Twitter) multi-image carousel trick — split any image into equal vertical slices, ready to post.
+A photo slicer for the X (Twitter) multi-image carousel trick. Split any image into equal vertical 2:1 or 3:1 slices, ready to post.
 
-Live: https://postslicer.com
+Live: [https://postslicer.com](https://postslicer.com)
 
 ## How it works
 
@@ -12,10 +12,10 @@ Slicey does the slicing: drop in a photo, pick 2 or 3 slices, and download a zip
 
 ## Tech
 
-- Vanilla JS, HTML, CSS — no framework, no build step
-- Canvas API for slicing images client-side (nothing is uploaded to a server)
-- JSZip for bundling the slices into a downloadable zip
-- GoatCounter for privacy-friendly analytics
+- Base: Vanilla JS, HTML, CSS
+- HTML5  Canvas API: local slicing (nothing is uploaded to a server)
+- JSZip: for bundling the slices into a downloadable zip
+- GoatCounter: for privacy-friendly analytics
 
 ## Getting started
 
