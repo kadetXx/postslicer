@@ -255,10 +255,6 @@ html, body {
   scroll-snap-align: start;
   background-repeat: no-repeat;
   background-color: var(--kraft-dark);
-  /* safety net for unusually tall (portrait) uploads -- the default
-     3:1 ad image and most photos never hit this, but the page must
-     always fit 100vh regardless of what gets dropped in */
-  max-height: 34vh;
 }
 
 .slide-placeholder-label {
