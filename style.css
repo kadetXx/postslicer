@@ -405,15 +405,52 @@ html, body {
 /* ---- responsive ---- */
 
 @media (max-width: 720px) {
-  .side-menu { display: none; }
   .frame { min-height: auto; }
-  .brand { position: static; justify-content: center; margin-top: 28px; margin-bottom: 28px; }
+  .brand { position: static; justify-content: center; margin-top: 28px; margin-bottom: 42px; }
 
   /* the logo is static here instead of fixed, so it consumes real
-     height above .stage -- reserve what's left of the viewport (106px =
+     height above .stage -- reserve what's left of the viewport (120px =
      .brand's margin-top + margin-bottom + its tallest child, the
      stamp-mark) so justify-content:center still centers correctly. */
-  .stage { min-height: calc(100vh - 106px); padding-top: 0; }
+  .stage { min-height: calc(100vh - 120px); padding-top: 0; }
+
+  /* side menu becomes a footer: static in flow (moved to the end of
+     .frame in HTML), centered, links stacked vertically as before */
+  .side-menu {
+    position: static;
+    left: auto;
+    top: auto;
+    transform: none;
+    justify-content: center;
+    margin: 36px 0 54px;
+  }
+
+  .menu-links {
+    align-items: center;
+    gap: 28px;
+  }
+
+  /* no room for the sidebar's divider in a footer layout */
+  .menu-divider {
+    display: none;
+  }
+
+  /* portfolio-footer treatment: icon trails the label, muted, always
+     visible -- no hover on touch to reveal it */
+  .menu-link {
+    position: static;
+    padding-left: 0;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .menu-link svg {
+    position: static;
+    transform: none;
+    opacity: 1;
+    order: 2;
+    fill: var(--grease);
+  }
 
   /* no room beside the card on narrow screens -- always sit below it,
      even if the max-height breakpoint below also matches */
