@@ -424,8 +424,10 @@ html, body {
     box-shadow: none;
   }
 
+  /* a hint of elevation so the fixed buttons don't flatten into the
+     receipt when it's tall enough to intersect them on smaller screens */
   .stamp-btn {
-    box-shadow: none;
+    box-shadow: 0 2px 8px rgba(33, 28, 25, 0.18);
   }
 
   /* stamp buttons and menu links flattened into one fixed bottom row --
