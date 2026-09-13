@@ -71,15 +71,6 @@
       slide.style.backgroundSize = `${sliceCount * 100}% auto`;
       slide.style.backgroundPosition = `${(i / (sliceCount - 1)) * 100}% center`;
 
-      if (i === 0) {
-        const label = document.createElement('span');
-        label.className = 'slide-placeholder-label';
-        label.textContent = `1/${sliceCount}`;
-        label.style.left = '0';
-        label.style.top = '0';
-        slide.appendChild(label);
-      }
-
       const slideDownload = document.createElement('button');
       slideDownload.type = 'button';
       slideDownload.className = 'slide-download';

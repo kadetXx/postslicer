@@ -274,14 +274,6 @@ html, body {
   cursor: pointer;
 }
 
-.slide-placeholder-label {
-  position: absolute;
-  font-family: var(--font-stamp);
-  font-size: 9px;
-  color: rgba(33, 28, 25, 0.55);
-  padding: 7px;
-}
-
 .slide-download {
   position: absolute;
   left: 9px;
