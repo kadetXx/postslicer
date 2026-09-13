@@ -397,60 +397,89 @@ html, body {
 /* ---- responsive ---- */
 
 @media (max-width: 720px) {
+  html, body { overscroll-behavior: none; }
+
   .brand { display: none; }
 
-  /* side menu becomes a footer: static in flow (moved to the end of
-     .frame in HTML), centered, links stacked vertically as before */
-  .side-menu {
-    position: static;
-    left: auto;
-    top: auto;
+  .stage { padding: 20px 0 90px; justify-content: flex-start; background: var(--white); }
+
+  .panel-label-row,
+  .receipt {
+    width: 100%;
+    max-width: 100%;
     transform: none;
-    justify-content: center;
-    margin: 36px 0 54px;
+  }
+
+  /* stage's own background is now white for everything below this row --
+     pull this row up into stage's top padding and repaint that reclaimed
+     strip kraft, so the background above stays exactly as it was */
+  .panel-label-row {
+    margin-top: -20px;
+    padding: 20px 18px;
+    background: var(--kraft);
+  }
+
+  .receipt {
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .stamp-btn {
+    box-shadow: none;
+  }
+
+  /* stamp buttons and menu links flattened into one fixed bottom row --
+     split left/right of center so they read as a single row without
+     needing a shared parent */
+  .stamp-row {
+    position: fixed;
+    left: 50%;
+    top: auto;
+    right: auto;
+    bottom: 20px;
+    transform: translateX(calc(-100% - 10px));
+    margin: 0;
+    flex-direction: row;
+  }
+
+  .stamp-spacer {
+    display: none;
+  }
+
+  .side-menu {
+    position: fixed;
+    left: 50%;
+    top: auto;
+    bottom: 20px;
+    transform: translateX(10px);
+    margin: 0;
   }
 
   .menu-links {
+    flex-direction: row;
     align-items: center;
-    gap: 28px;
+    gap: 14px;
   }
 
-  /* no room for the sidebar's divider in a footer layout */
+  /* no room for the sidebar's divider in this compact row */
   .menu-divider {
     display: none;
   }
 
-  /* portfolio-footer treatment: icon trails the label, muted, always
-     visible -- no hover on touch to reveal it */
+  /* icon-only, muted, always visible -- no hover on touch to reveal it */
   .menu-link {
     position: static;
     padding-left: 0;
-    justify-content: center;
-    gap: 8px;
   }
 
   .menu-link svg {
     position: static;
     transform: none;
     opacity: 1;
-    order: 2;
     fill: var(--grease);
   }
 
-  /* no room beside the card on narrow screens -- always sit below it,
-     even if the max-height breakpoint below also matches */
-  .stamp-row {
-    left: 50%;
-    top: 100%;
-    right: auto;
-    bottom: auto;
-    transform: translateX(-50%);
-    margin-top: 22px;
-    margin-right: 0;
-    flex-direction: row;
-  }
-
-  .stamp-spacer {
-    display: block;
+  .menu-link span {
+    display: none;
   }
 }
